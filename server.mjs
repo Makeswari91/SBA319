@@ -4,9 +4,9 @@ import dotenv from 'dotenv';
 import connectDB from './db/conn.mjs';
 import log from './Middleware/loggingMiddleware.mjs';
 import globalErr from './Middleware/globalErr.mjs';
-import usersRoute from './Routes/usersRoute.mjs';
-import postsRoute from './Routes/postsRoute.mjs';
-import commentsRoute from './Routes/commentsRoute.mjs';
+import studentRoute from './Routes/studentRoute.mjs';
+import NetflixMoviesRoute from './Routes/NetflixMoviesRoute.mjs';
+import olympicRoute from './Routes/olympicRoute.mjs';
 
 //Setups
 dotenv.config();
@@ -16,14 +16,16 @@ const PORT = process.env.PORT || 3001;
 //connection
 connectDB();
 
-//Routes
-app.use('/api/Users', usersRoute);
-app.use('/api/Posts', postsRoute);
-app.use('/api/Comments', commentsRoute);
-
 //Middleware
  app.use(express.json());
  app.use(log);
+
+
+//Routes
+app.use('/api/student', studentRoute);
+app.use('/api/NetflixMovies', NetflixMoviesRoute);
+app.use('/api/olympic', olympicRoute);
+
 
 //Global Middleware
  app.use(globalErr);
